@@ -19,7 +19,6 @@ export class PacienteController {
             return await this.pacienteService.create( _Paciente)
 
         } catch(e){
-            console.log(e)
             throw bad_request(e)
         }
     }
@@ -31,7 +30,6 @@ export class PacienteController {
             return await this.pacienteService.update(_Paciente)
 
         } catch(e) {
-            console.log(e)
             throw bad_request(e)
         }
     }
@@ -41,7 +39,6 @@ export class PacienteController {
         try {
             return await this.pacienteService.read(id)
         } catch (e) {
-            console.log(e)
             throw bad_request(e)
         }
     }
@@ -56,7 +53,6 @@ export class PacienteController {
             return result
 
         } catch(e) {
-            console.log(e)
             throw bad_request(e)
         }
     }
