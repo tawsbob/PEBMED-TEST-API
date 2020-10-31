@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryColumn, BeforeInsert, Unique } from 'typeorm';
+import { Entity, Column, PrimaryColumn, BeforeInsert, OneToMany } from 'typeorm';
+import { Consulta } from '../consulta/consulta.entity';
 import { ulid } from 'ulid';
 
 export enum Sexo {
@@ -34,6 +35,9 @@ export class Paciente {
 
   @Column('int')
   peso: number
+
+  @OneToMany(() => Consulta, consulta => consulta.paciente)
+  consultas: Consulta[];
 
   @BeforeInsert()
     setId(){

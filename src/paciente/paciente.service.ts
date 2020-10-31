@@ -18,7 +18,7 @@ export class PacienteService {
     }
 
     read(id: string): Promise<Paciente[]> | Promise<Paciente> {
-        return id ? this.pacienteRepository.findOne(id) : this.pacienteRepository.find()
+        return id ? this.pacienteRepository.findOne(id) : this.pacienteRepository.find({ relations: ["consultas"] })
     }
 
     update(paciente: Paciente): Promise<Paciente> {
@@ -33,7 +33,6 @@ export class PacienteService {
         } catch(e){
             console.log(e)
             return false
-        }
-        return 
+        } 
     }
 }
