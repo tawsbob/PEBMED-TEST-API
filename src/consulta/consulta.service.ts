@@ -15,9 +15,13 @@ export class ConsultaService {
             this.consultaRepository.create(consulta)
         )
     }
-
+    
     read(id: string): Promise<Consulta[]> | Promise<Consulta> {
         return id ? this.consultaRepository.findOne(id) : this.consultaRepository.find({ relations: ["paciente"] })
+    }
+
+    getByPacienteId(id: string): Promise<Consulta[]> {
+        return this.consultaRepository.find({ where: { paciente: { id } } })
     }
 
     update(paciente: Consulta): Promise<Consulta> {
@@ -33,6 +37,17 @@ export class ConsultaService {
             console.log(e)
             return false
         } 
+    }
+
+    async deleteByPacienteId(pacienteId: string){
+        try{
+            const [ _, affected ] = await this.consultaRepository.query(`DELETE FROM consulta where "pacienteId" = $1`, [pacienteId])
+            return (affected > 0)
+
+        } catch(e){
+            console.log(e)
+            return false
+        }
     }
 
     

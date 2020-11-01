@@ -42,6 +42,17 @@ export class ConsultaController {
         }
     }
 
+    @Get('/paciente/:id')
+    async getByPacienteId( @Param('id') id: string ): Promise<Consulta[]> {
+        try {
+
+            return await this.consultaService.getByPacienteId(id)
+
+        } catch(e) {
+            throw bad_request(e)
+        }
+    }
+
     @Delete(':id')
     async delete(@Param('id') id: string): Promise<DeletedResult>{
         try {

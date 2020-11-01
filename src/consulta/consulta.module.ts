@@ -8,5 +8,6 @@ import { ConsultaProvider } from './consulta.provider';
   imports: [DatabaseModule],
   controllers: [ConsultaController],
   providers: [...ConsultaProvider, ConsultaService],
+  exports: [ConsultaService]
 })
 export class ConsultaModule {}

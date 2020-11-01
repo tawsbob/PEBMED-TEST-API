@@ -11,8 +11,10 @@ export class Consulta {
   @Column()
   data: Date;
 
-  
-  @ManyToOne (() => Paciente, paciente => paciente.consultas)
+  @Column({ length: 1500, nullable: true })
+  anotacoes: string
+
+  @ManyToOne (() => Paciente, paciente => paciente.consultas,  { nullable: false })
     paciente: Paciente;
 
   @BeforeInsert()
